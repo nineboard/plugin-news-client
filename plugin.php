@@ -7,17 +7,16 @@
  * PHP version 7
  *
  * @category    NewsClient
- * @package     Xpressengine\Plugins\NewsClient
+ *
  * @author      XE Developers <developers@xpressengine.com>
  * @copyright   2019 Copyright XEHub Corp. <https://www.xehub.io>
  * @license     http://www.gnu.org/licenses/lgpl-3.0-standalone.html LGPL
+ *
  * @link        https://xpressengine.io
  */
 
 namespace Xpressengine\Plugins\NewsClient;
 
-use Frontend;
-use Presenter;
 use Route;
 use XeLang;
 use Xpressengine\Plugin\AbstractPlugin;
@@ -26,10 +25,11 @@ use Xpressengine\Plugin\AbstractPlugin;
  * Plugin
  *
  * @category    NewsClient
- * @package     Xpressengine\Plugins\NewsClient
+ *
  * @author      XE Developers <developers@xpressengine.com>
  * @copyright   2019 Copyright XEHub Corp. <https://www.xehub.io>
  * @license     http://www.gnu.org/licenses/lgpl-3.0-standalone.html LGPL
+ *
  * @link        https://xpressengine.io
  */
 class Plugin extends AbstractPlugin
@@ -90,13 +90,12 @@ class Plugin extends AbstractPlugin
     /**
      * 플러그인이 활성화될 때 실행할 코드를 여기에 작성한다.
      *
-     * @param string|null $installedVersion 현재 XpressEngine에 설치된 플러그인의 버전정보
-     *
+     * @param  string|null  $installedVersion  현재 XpressEngine에 설치된 플러그인의 버전정보
      * @return void
      */
     public function activate($installedVersion = null)
     {
-        if (!$this->getHandler()->getConfig()) {
+        if (! $this->getHandler()->getConfig()) {
             $this->getHandler()->setAgree(false);
         }
 

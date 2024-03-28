@@ -7,15 +7,17 @@
  * PHP version 7
  *
  * @category    NewsClient
- * @package     Xpressengine\Plugins\NewsClient
+ *
  * @author      XE Developers <developers@xpressengine.com>
  * @copyright   2019 Copyright XEHub Corp. <https://www.xehub.io>
  * @license     http://www.gnu.org/licenses/lgpl-3.0-standalone.html LGPL
+ *
  * @link        https://xpressengine.io
  */
 
 namespace Xpressengine\Plugins\NewsClient;
 
+use GuzzleHttp\Client;
 use Illuminate\Contracts\Cache\Repository as CacheContract;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Http\Request;
@@ -23,16 +25,16 @@ use PDO;
 use Xpressengine\Config\ConfigManager;
 use Xpressengine\Plugin\PluginEntity;
 use Xpressengine\Plugin\PluginHandler;
-use GuzzleHttp\Client;
 
 /**
  * Handler
  *
  * @category    NewsClient
- * @package     Xpressengine\Plugins\NewsClient
+ *
  * @author      XE Developers <developers@xpressengine.com>
  * @copyright   2019 Copyright XEHub Corp. <https://www.xehub.io>
  * @license     http://www.gnu.org/licenses/lgpl-3.0-standalone.html LGPL
+ *
  * @link        https://xpressengine.io
  */
 class Handler
@@ -50,6 +52,7 @@ class Handler
     protected $domain = 'http://news.xpressengine.io';
 
     protected $cacheKey = 'news_client::report';
+
     protected $configKey = 'news_client';
 
     protected $interval = 60;   // minute
@@ -57,11 +60,11 @@ class Handler
     /**
      * Handler constructor.
      *
-     * @param CacheContract   $cache   cache contract
-     * @param ConfigManager   $configs config manager
-     * @param PluginHandler   $plugins plugin handler
-     * @param DatabaseManager $db      db manager
-     * @param Request         $request request
+     * @param  CacheContract  $cache  cache contract
+     * @param  ConfigManager  $configs  config manager
+     * @param  PluginHandler  $plugins  plugin handler
+     * @param  DatabaseManager  $db  db manager
+     * @param  Request  $request  request
      */
     public function __construct(
         CacheContract $cache,
@@ -81,11 +84,12 @@ class Handler
      * get data
      *
      * @return mixed
+     *
      * @throws \Exception
      */
     public function getData()
     {
-        if (!$this->cache->has($this->cacheKey)) {
+        if (! $this->cache->has($this->cacheKey)) {
             $this->cache->put($this->cacheKey, true, $this->interval);
             $this->sendCoreVersion();
 
@@ -101,6 +105,7 @@ class Handler
      * send core version
      *
      * @return void
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function sendCoreVersion()
@@ -109,13 +114,13 @@ class Handler
 
         $response = $client->request('post', $this->url('news'), [
             'headers' => [
-                'REQUESTURL' => $this->request->root()
+                'REQUESTURL' => $this->request->root(),
             ],
             'form_params' => [
                 'package' => 'XE',
                 'version' => __XE_VERSION__,
-//                'location' => 'ko'
-            ]
+                //                'location' => 'ko'
+            ],
         ]);
 
         if ($response->getStatusCode() != 200) {
@@ -127,6 +132,7 @@ class Handler
      * get news data
      *
      * @return mixed
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function getNewsData()
@@ -140,13 +146,12 @@ class Handler
     /**
      * url
      *
-     * @param string $page page
-     *
+     * @param  string  $page  page
      * @return string
      */
     protected function url($page)
     {
-        return rtrim($this->domain, '/') . '/' . $page;
+        return rtrim($this->domain, '/').'/'.$page;
     }
 
     /**
@@ -176,25 +181,25 @@ class Handler
      */
     public function isAgree()
     {
-        return $this->configs->getVal($this->configKey . '.collectAgree');
+        return $this->configs->getVal($this->configKey.'.collectAgree');
     }
 
     /**
      * set agree
      *
-     * @param bool $bool set agree value
-     *
+     * @param  bool  $bool  set agree value
      * @return void
      */
     public function setAgree($bool = true)
     {
-        $this->configs->setVal($this->configKey . '.collectAgree', $bool);
+        $this->configs->setVal($this->configKey.'.collectAgree', $bool);
     }
 
     /**
      * send information
      *
      * @return void
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function sendInformation()
@@ -207,7 +212,7 @@ class Handler
 
         $response = $client->request('post', $this->url('envs'), [
             'headers' => [
-                'REQUESTURL' => $this->request->root()
+                'REQUESTURL' => $this->request->root(),
             ],
             'form_params' => [
                 'os_name' => $os['name'],
@@ -219,8 +224,8 @@ class Handler
                 'php_extensions' => $php['extensions'],
                 'db_driver' => $db['driver'],
                 'db_version' => $db['version'],
-                'plugins' => $this->getPlugin()
-            ]
+                'plugins' => $this->getPlugin(),
+            ],
         ]);
 
         if ($response->getStatusCode() != 200) {
@@ -238,7 +243,7 @@ class Handler
         return [
             'name' => php_uname('s'),
             'release' => php_uname('r'),
-            'version' => php_uname('v')
+            'version' => php_uname('v'),
         ];
     }
 
@@ -268,7 +273,7 @@ class Handler
             }),
             'extensions' => implode(',', array_map(function ($ext) {
                 return strtolower($ext);
-            }, get_loaded_extensions()))
+            }, get_loaded_extensions())),
         ];
     }
 
@@ -284,7 +289,7 @@ class Handler
 
         return [
             'driver' => $pdo->getAttribute(PDO::ATTR_DRIVER_NAME),
-            'version' => $pdo->getAttribute(PDO::ATTR_SERVER_VERSION)
+            'version' => $pdo->getAttribute(PDO::ATTR_SERVER_VERSION),
         ];
     }
 
@@ -301,7 +306,7 @@ class Handler
         foreach ($collection as $plugin) {
             $plugins[$plugin->getId()] = [
                 'version' => $plugin->getInstalledVersion(),
-                'activated' => $plugin->isActivated()
+                'activated' => $plugin->isActivated(),
             ];
         }
 

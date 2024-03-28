@@ -7,10 +7,11 @@
  * PHP version 7
  *
  * @category    NewsClient
- * @package     Xpressengine\Plugins\NewsClient
+ *
  * @author      XE Developers <developers@xpressengine.com>
  * @copyright   2019 Copyright XEHub Corp. <https://www.xehub.io>
  * @license     http://www.gnu.org/licenses/lgpl-3.0-standalone.html LGPL
+ *
  * @link        https://xpressengine.io
  */
 
@@ -23,10 +24,11 @@ use Xpressengine\Widget\AbstractWidget;
  * NewsWidget
  *
  * @category    NewsClient
- * @package     Xpressengine\Plugins\NewsClient
+ *
  * @author      XE Developers <developers@xpressengine.com>
  * @copyright   2019 Copyright XEHub Corp. <https://www.xehub.io>
  * @license     http://www.gnu.org/licenses/lgpl-3.0-standalone.html LGPL
+ *
  * @link        https://xpressengine.io
  */
 class NewsWidget extends AbstractWidget
@@ -65,7 +67,7 @@ class NewsWidget extends AbstractWidget
         return $this->renderSkin(
             [
                 'latest' => $data->version,
-                'news' => $data->news
+                'news' => $data->news,
             ]
         );
     }

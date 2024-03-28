@@ -7,25 +7,28 @@
  * PHP version 7
  *
  * @category    NewsClient
- * @package     Xpressengine\Plugins\NewsClient
+ *
  * @author      XE Developers <developers@xpressengine.com>
  * @copyright   2019 Copyright XEHub Corp. <https://www.xehub.io>
  * @license     http://www.gnu.org/licenses/lgpl-3.0-standalone.html LGPL
+ *
  * @link        https://xpressengine.io
  */
+
 namespace Xpressengine\Plugins\NewsClient;
 
-use Xpressengine\Skin\AbstractSkin;
 use View;
+use Xpressengine\Skin\AbstractSkin;
 
 /**
  * ManagerSkin
  *
  * @category    NewsClient
- * @package     Xpressengine\Plugins\NewsClient
+ *
  * @author      XE Developers <developers@xpressengine.com>
  * @copyright   2019 Copyright XEHub Corp. <https://www.xehub.io>
  * @license     http://www.gnu.org/licenses/lgpl-3.0-standalone.html LGPL
+ *
  * @link        https://xpressengine.io
  */
 class ManagerSkin extends AbstractSkin

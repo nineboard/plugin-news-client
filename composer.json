@@ -1,5 +1,5 @@
 {
-  "name": "xpressengine-plugin/news_client",
+  "name": "nineboard/plugin-news-client",
   "description": "공식홈페이지 공지사항을 보여주는 위젯 플러그인 입니다.",
   "keywords": [
     "xpressengine",
@@ -28,30 +28,45 @@
           "class": "Xpressengine\\Plugins\\NewsClient\\NewsWidget",
           "name": "새소식 위젯",
           "description": "대시보드용 위젯 입니다.",
-          "screenshot" : []
+          "screenshot": []
         },
         "widget/news_client@news/skin/news_client@default": {
           "class": "Xpressengine\\Plugins\\NewsClient\\NewsWidgetSkin",
           "name": "새소식 위젯 스킨",
           "description": "대시보드용 위젯 스킨입니다.",
-          "screenshot" : []
+          "screenshot": []
         },
         "news_client/settingsSkin/news_client@default": {
           "class": "Xpressengine\\Plugins\\NewsClient\\ManagerSkin",
           "name": "관리자 스킨",
           "description": "관리자 스킨 입니다.",
-          "screenshot" : []
+          "screenshot": []
         }
       }
     }
   },
   "require": {
-    "xpressengine/xpressengine": "^3.0.2",
-    "guzzlehttp/guzzle": "~6.1"
+    "nineboard/nineboard": "dev-main",
+    "guzzlehttp/guzzle": "*"
   },
   "autoload": {
     "psr-4": {
       "Xpressengine\\Plugins\\NewsClient\\": "src/"
     }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git://github.com/nineboard/nineboard.git"
+    }
+  ],
+  "config": {
+    "allow-plugins": {
+      "xpressengine/installer": true,
+      "wikimedia/composer-merge-plugin": true
+    }
+  },
+  "require-dev": {
+    "laravel/pint": "^1.0.0"
   }
 }

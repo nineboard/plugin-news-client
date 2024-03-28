@@ -67,6 +67,6 @@ return [
                 'ko' => '설치된 Plugin 정보',
                 'en' => 'Installed plugins',
             ],
-        ]
-    ]
+        ],
+    ],
 ];

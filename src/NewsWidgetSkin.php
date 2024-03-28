@@ -7,10 +7,11 @@
  * PHP version 7
  *
  * @category    NewsClient
- * @package     Xpressengine\Plugins\NewsClient
+ *
  * @author      XE Developers <developers@xpressengine.com>
  * @copyright   2019 Copyright XEHub Corp. <https://www.xehub.io>
  * @license     http://www.gnu.org/licenses/lgpl-3.0-standalone.html LGPL
+ *
  * @link        https://xpressengine.io
  */
 
@@ -22,10 +23,11 @@ use Xpressengine\Skin\GenericSkin;
  * NewsWidgetSkin
  *
  * @category    NewsClient
- * @package     Xpressengine\Plugins\NewsClient
+ *
  * @author      XE Developers <developers@xpressengine.com>
  * @copyright   2019 Copyright XEHub Corp. <https://www.xehub.io>
  * @license     http://www.gnu.org/licenses/lgpl-3.0-standalone.html LGPL
+ *
  * @link        https://xpressengine.io
  */
 class NewsWidgetSkin extends GenericSkin
@@ -43,7 +45,7 @@ class NewsWidgetSkin extends GenericSkin
     protected static $info = [
         'support' => [
             'mobile' => true,
-            'desktop' => true
-        ]
+            'desktop' => true,
+        ],
     ];
 }
