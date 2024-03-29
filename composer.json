@@ -46,7 +46,7 @@
     }
   },
   "require": {
-    "nineboard/nineboard": "dev-main",
+    "nineboard/nineboard": "^3.0.0",
     "guzzlehttp/guzzle": "*"
   },
   "autoload": {
